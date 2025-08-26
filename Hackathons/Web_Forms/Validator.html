@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Validator Hackathon Solution!</title>
+    <script>
+        function validateForm() {
+            let messages = [];
+
+            
+            const username = document.getElementById("username").value;
+            if (username.length < 6 || username.length > 8) {
+                messages.push("Username not validated");
+            }
+
+            
+            const pin = document.getElementById("pin").value;
+            const validatePinChecked = document.getElementById("validatePin").checked;
+            if (validatePinChecked && pin.trim() === "") {
+                messages.push("Pin not validated (mandatory)");
+            } else if (pin && !/^[a-zA-Z0-9]+$/.test(pin)) {
+                messages.push("Pin not validated (must be alphanumeric)");
+            }
+
+            
+            const state = document.getElementById("states").value;
+            if (state === "") {
+                messages.push("States not validated");
+            }
+
+            
+            const testMeChecked = document.getElementById("testMe").checked;
+            messages.push(`Test me is ${testMeChecked ? "checked" : "unchecked"}`);
+
+           
+            const milk = document.getElementById("milk").checked;
+            const butter = document.getElementById("butter").checked;
+            const cheese = document.getElementById("cheese").checked;
+            if (!milk && !butter && !cheese) {
+                messages.push("Milk/Butter/Cheese not validated");
+            }
+
+            
+            alert(messages.join("  "));
+        }
+    </script>
+</head>
+<body>
+    <h2>Validate Me!</h2>
+    <form>
+        Username: <input type="text" id="username" placeholder="6-8 characters only"><br><br>
+        Pin: <input type="text" id="pin"><br><br>
+
+        <label for="states">States:</label>
+        <select id="states">
+            <option value="">--Select--</option>
+            <option value="option1">Option1</option>
+            <option value="option2">Option2</option>
+        </select><br><br>
+
+        <input type="checkbox" id="validatePin"> Validate Pin<br>
+        <input type="checkbox" id="testMe"> Test me<br><br>
+
+        <label>Choose one:</label><br>
+        <input type="radio" name="dairy" id="milk"> Milk<br>
+        <input type="radio" name="dairy" id="butter"> Butter<br>
+        <input type="radio" name="dairy" id="cheese"> Cheese<br><br>
+
+        <button type="button" onclick="validateForm()">Check Form</button>
+    </form>
+</body>
+</html>
