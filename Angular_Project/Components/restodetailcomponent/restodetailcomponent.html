@@ -1,0 +1,18 @@
+
+<div class="container mt-4">
+  <h2 class="mb-4">{{restaurant?.name}} - Dishes</h2>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let dish of restaurant?.items">
+      <div class="card mb-4">
+        <img [src]="dish.image" class="card-img-top" alt="{{dish.name}}">
+        <div class="card-body">
+          <h5 class="card-title">{{dish.name}}</h5>
+          <p class="card-text">{{dish.description}}</p>
+          <p class="card-text">Price: ₹{{dish.price}}</p>
+          <button class="btn btn-success" (click)="addToCart(dish)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
